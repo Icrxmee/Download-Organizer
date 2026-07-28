@@ -3,6 +3,13 @@ import time
 
 downloads = Path.home() / "Downloads"
 
+def identificar_categoria(extensao):
+  return pastas.get(extensao, 'Outros')
+
+def criar_pastas(caminho_categoria):
+  if not caminho_categoria.is_dir():
+        caminho_categoria.mkdir()
+  
 pastas = {
     ".png": "Imagens",
     ".jpg": "Imagens",
@@ -85,14 +92,13 @@ time.sleep(1)
 for item in downloads.iterdir(): 
 
   if item.is_file():
-    categoria = pastas.get(item.suffix, 'Outros')
+    categoria = identificar_categoria(item.suffix)
     caminho_categoria = downloads / categoria
 
     print(f"✔ {item.name} → {categoria}")
     time.sleep(0.3)
 
-    if not caminho_categoria.is_dir():
-      caminho_categoria.mkdir()
+    criar_pastas(caminho_categoria)
 
     caminho_final = caminho_categoria / item.name
 
