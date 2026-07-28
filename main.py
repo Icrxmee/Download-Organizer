@@ -1,4 +1,5 @@
 from pathlib import Path
+import time
 
 downloads = Path.home() / "Downloads"
 
@@ -78,11 +79,21 @@ pastas = {
     ".cue": "Imagem de Disco",
 }
 
-for item in downloads.iterdir():
+print("Organizando Arquivos...")
+time.sleep(1)
 
-    if item.is_file():
-      categoria = pastas.get(item.suffix, 'Outros')
-      caminho_categoria = downloads / categoria
+for item in downloads.iterdir(): 
 
-      if not caminho_categoria.is_dir():
-        caminho_categoria.mkdir()
+  if item.is_file():
+    categoria = pastas.get(item.suffix, 'Outros')
+    caminho_categoria = downloads / categoria
+
+    print(f"✔ {item.name} → {categoria}")
+    time.sleep(0.3)
+
+    if not caminho_categoria.is_dir():
+      caminho_categoria.mkdir()
+
+    caminho_final = caminho_categoria / item.name
+
+    item.rename(caminho_final)
