@@ -9,7 +9,17 @@ def identificar_categoria(extensao):
 def criar_pastas(caminho_categoria):
   if not caminho_categoria.is_dir():
         caminho_categoria.mkdir()
+
+def encontrar_nome_novo(caminho_final):
+  contador = 1
+
+  while caminho_novo.exists():
+    nome_novo = (f"{caminho_final.stem}({contador}){caminho_final.suffix}")
+    caminho_novo = caminho_final.parent / nome_novo
+
   
+  
+     
 pastas = {
     ".png": "Imagens",
     ".jpg": "Imagens",
