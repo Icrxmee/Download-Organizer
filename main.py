@@ -13,13 +13,15 @@ def criar_pastas(caminho_categoria):
 def encontrar_nome_novo(caminho_final):
   contador = 1
 
-  while caminho_novo.exists():
+  while True:
     nome_novo = (f"{caminho_final.stem}({contador}){caminho_final.suffix}")
     caminho_novo = caminho_final.parent / nome_novo
 
-  
-  
-     
+    if caminho_novo.exists():
+      contador += 1
+    else:
+       return caminho_novo
+
 pastas = {
     ".png": "Imagens",
     ".jpg": "Imagens",
@@ -112,4 +114,6 @@ for item in downloads.iterdir():
 
     caminho_final = caminho_categoria / item.name
 
+    if caminho_final.exists():
+       caminho_final = encontrar_nome_novo(caminho_final)
     item.rename(caminho_final)
