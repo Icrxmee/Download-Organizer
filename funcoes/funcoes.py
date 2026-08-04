@@ -39,11 +39,12 @@ def organizar_downloads(downloads):
   print(f"Arquivos Organizados: {arquivos_organizados}")
   print(f"Arquivos com Erros: {arquivos_com_erro}")
   print("-" * 20)
+  time.sleep(60)
 
 def organiza_arquivo(item, downloads):
   try:
 
-    categoria = identificar_categoria(item.suffix)
+    categoria = identificar_categoria(item.suffix.lower())
     caminho_categoria = downloads / categoria
     
     print(f"✔ {item.name} → {categoria}")
