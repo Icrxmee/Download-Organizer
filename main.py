@@ -1,7 +1,7 @@
 import time
 from pathlib import Path
 from funcoes.funcoes import (
-  organiza_arquivo
+  organizar_downloads
 )
 
 print("Organizando Arquivos...")
@@ -9,7 +9,4 @@ time.sleep(1)
 
 downloads = Path.home() / "Downloads"
 
-for item in downloads.iterdir(): 
-
-  if item.is_file():
-    organiza_arquivo(item, downloads)
+organizar_downloads(downloads)
